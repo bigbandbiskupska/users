@@ -1,0 +1,7 @@
+app/config/config.local.neon
+.DS_Store
+.idea
+vendor/*
+log/*
+temp/*
+composer.lock
