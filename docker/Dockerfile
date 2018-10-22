@@ -1,4 +1,4 @@
-FROM php:7.1-cli
+FROM php:5.6-cli
 MAINTAINER Kryštof Tulinger <k.tulinger@gmail.com>
 
 ENV WWW_ROOT /app
