@@ -20,6 +20,7 @@ use Nette\Utils\ArrayHash;
 use Tracy\Debugger;
 use Tracy\ILogger;
 use Tulinkry\Application\UI\Form;
+use Tulinkry\Services\ParameterService;
 
 
 class PasswordPresenter extends BasePresenter
@@ -35,6 +36,12 @@ class PasswordPresenter extends BasePresenter
      * @inject
      */
     public $mailer;
+
+    /**
+     * @var ParameterService
+     * @inject
+     */
+    public $parameters;
 
     public function actionRenew($token)
     {
@@ -93,7 +100,9 @@ class PasswordPresenter extends BasePresenter
 
             $latte = new Engine();
             $params = [
-                'link' => 'http://localhost:8004/users/renew_password/' . $token . (!empty($redirect) ? '?redirect=' . urlencode($redirect) : '')
+                'link' => sprintf('%s%s',
+                    $this->parameters->params['api']['users']['renew_password'],
+                    (!empty($redirect) ? '?redirect=' . urlencode($redirect) : '')),
             ];
 
             $message = new Message();
