@@ -100,8 +100,9 @@ class PasswordPresenter extends BasePresenter
 
             $latte = new Engine();
             $params = [
-                'link' => sprintf('%s%s',
+                'link' => sprintf('%s/%s%s',
                     $this->parameters->params['api']['users']['renew_password'],
+                    $token,
                     (!empty($redirect) ? '?redirect=' . urlencode($redirect) : '')),
             ];
 
