@@ -46,19 +46,22 @@ class PasswordPresenter extends BasePresenter
     public function actionRenew($token)
     {
         $redirect = Url::unescape($this->getHttpRequest()->getQuery('redirect'));
-        if(!empty($redirect)) {
-            $this['renewPasswordForm']->setDefaults([
+        $defaults = [
                 'token' => $token,
+        ];
+        if(!empty($redirect)) {
+            $defaults = array_merge($defaults, [
                 'redirect' => $redirect
             ]);
             $this['renewPasswordForm']->setAction($this['renewPasswordForm']->getAction() . '?redirect=' . urlencode($redirect));
         }
+        $this['renewPasswordForm']->setValues($defaults);
     }
 
     public function actionForgotten() {
         $redirect = Url::unescape($this->getHttpRequest()->getQuery('redirect'));
         if(!empty($redirect)) {
-            $this['forgottenPasswordForm']->setDefaults([
+            $this['forgottenPasswordForm']->setValues([
                 'redirect' => $redirect
             ]);
             $this['forgottenPasswordForm']->setAction($this['forgottenPasswordForm']->getAction() . '?redirect=' . urlencode($redirect));
@@ -117,6 +120,7 @@ class PasswordPresenter extends BasePresenter
             $this->redirect(':User:Homepage:');
         } catch (BadRequestException $e) {
             $form->addError($e->getMessage());
+            Debugger::log($e, ILogger::ERROR);
         } catch (AbortException $e) {
             throw $e;
         } catch (\Exception $e) {
@@ -162,6 +166,7 @@ class PasswordPresenter extends BasePresenter
             $this->redirect(':User:Homepage:');
         } catch (BadRequestException $e) {
             $form->addError($e->getMessage());
+            Debugger::log($e, ILogger::ERROR);
         } catch (AbortException $e) {
             throw $e;
         } catch (\Exception $e) {
