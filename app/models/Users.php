@@ -36,7 +36,7 @@ class Users extends BaseModel
 
     public function getUserWithNewPasswordToken($id) {
         if(($user = $this->entity($id)) === null) {
-            throw new BadRequestException("Uživatel neexistuje.", IResponse::S400_BAD_REQUEST);
+            throw new BadRequestException("Uživatel neexistuje ${id}.", IResponse::S400_BAD_REQUEST);
         }
 
         $token = Random::generate(64);
