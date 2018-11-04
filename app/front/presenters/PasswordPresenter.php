@@ -95,7 +95,6 @@ class PasswordPresenter extends BasePresenter
                 throw new BadRequestException("Uživatel neexistuje pro {$values->email}.", IResponse::S400_BAD_REQUEST);
             }
 
-            Debugger::log($this->getHttpRequest()->getQuery(), 'info');
             $token = $this->users->getUserWithNewPasswordToken($user->id);
             $redirect = $values->redirect;
 
