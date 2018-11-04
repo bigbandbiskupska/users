@@ -92,7 +92,7 @@ class PasswordPresenter extends BasePresenter
             ]);
 
             if ($user === null) {
-                throw new BadRequestException("Uživatel neexistuje.", IResponse::S400_BAD_REQUEST);
+                throw new BadRequestException("Uživatel neexistuje pro {$values->email}.", IResponse::S400_BAD_REQUEST);
             }
 
             Debugger::log($this->getHttpRequest()->getQuery(), 'info');
