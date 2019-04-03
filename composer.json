@@ -34,8 +34,8 @@
 		"tracy/tracy": "~2.3.0",
 		"texy/texy": "~2.9.0",
 		"kdyby/translation": "^2.3.0",
-		"tulinkry/tulinkry": "dev-master",
-		"tulinkry/git": "~1"
+		"tulinkry/tulinkry": ">=1.0, <1.1",
+		"tulinkry/git": ">=1.0, <1.1"
 	},
 	"require-dev": {
 		"nette/tester": "^2.0"
